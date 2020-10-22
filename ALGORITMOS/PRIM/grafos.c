@@ -114,63 +114,6 @@ void print_adjacencias(grafo * g){
 }
 
 
-int obter_aresta_minima(grafo * g, int vertice){
-	no * adj = g -> adjacencias[vertice].primeiro;
-	no * adj_min = adj;
-
-	while(adj){
-		if(adj -> peso < adj_min -> peso){
-			adj_min = adj;
-		}
-		
-		adj = adj -> prox;
-		
-	}
-	
-	return adj_min -> indice_adj;
-
-}
-
-
-int obter_peso(grafo * g, int vertice1, int vertice2){
-	no * adj = g -> adjacencias[vertice1].primeiro;
-	// int peso_minimo = adj -> peso;
-
-	while(adj){
-		if(adj -> indice_adj == vertice2){
-			return adj -> peso;
-		}
-		
-		adj = adj -> prox;
-		
-	}
-}
-
-int obter_prox_aresta_minima(grafo * g, int vertice, int min){
-	no * adj = g -> adjacencias[vertice].primeiro;
-	no * adj_min;
-	
-	if(adj -> peso != min){
-		adj_min = adj;
-	} else {
-		adj_min = adj -> prox;
-	}
-
-
-	while(adj){
-		if(adj -> peso < adj_min -> peso && adj -> peso != min){
-			adj_min = adj;
-		}
-		
-		adj = adj -> prox;
-		
-	}
-	// mudar aqui
-	return adj_min -> peso;
-
-}
-
-
 void prim(grafo * g, int origem){
 	int * antecessores = (int *) malloc(sizeof(int) * g -> v);
 	int soma_pesos = 0;
@@ -183,7 +126,6 @@ void prim(grafo * g, int origem){
 	
 
 	for(int i = 0; i < g -> v - 1; i++){
-		printf("ORIGEM: %d\n", origem);
 		no * adj = g -> adjacencias[origem].primeiro;
 		int peso_min = g -> adjacencias[origem].primeiro -> peso;
 		
@@ -191,7 +133,6 @@ void prim(grafo * g, int origem){
 				
 		while(adj){
 			if(adj -> peso < peso_min && antecessores[adj -> indice_adj] == -1){
-				printf("ENTROU: %d\n\n", adj -> indice_adj);
 				peso_min = adj -> peso;
 				adj_prox = adj; 
 			}	
@@ -213,7 +154,6 @@ void prim(grafo * g, int origem){
 	}
 	
 	printf("\n");
-	
 	
 	printf("SOMA DOS PESOS: %d\n", soma_pesos);
 }
