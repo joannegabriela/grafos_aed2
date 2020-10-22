@@ -182,24 +182,29 @@ void prim(grafo * g, int origem){
 	antecessores[origem] = origem;
 	
 
-	for(int i = 0; i < g -> v; i++){
+	for(int i = 0; i < g -> v - 1; i++){
+		printf("ORIGEM: %d\n", origem);
 		no * adj = g -> adjacencias[origem].primeiro;
 		int peso_min = g -> adjacencias[origem].primeiro -> peso;
-		origem = adj -> indice_adj; 
-		printf("PROX: %d\n", adj -> indice_adj);
 		
+		no * adj_prox = adj;
+				
 		while(adj){
 			if(adj -> peso < peso_min && antecessores[adj -> indice_adj] == -1){
-				antecessores[adj -> indice_adj] = origem;
-				printf("::PROX: %d\n", adj -> indice_adj);
+				printf("ENTROU: %d\n\n", adj -> indice_adj);
 				peso_min = adj -> peso;
-			//	soma_pesos += adj -> peso;
-				origem = adj -> indice_adj; 
+				adj_prox = adj; 
 			}	
 			
 			adj = adj -> prox;
 			
 		}		
+		
+		antecessores[adj_prox  -> indice_adj] = origem;
+		soma_pesos += adj_prox -> peso;
+		origem = adj_prox -> indice_adj;
+
+		
 	}
 	
 	printf("ANTECESSORES: \n");
