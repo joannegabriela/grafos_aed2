@@ -1,0 +1,9 @@
+5 3
+A
+B
+C
+D
+E
+AB
+AC
+CB

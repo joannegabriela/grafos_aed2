@@ -1,0 +1,12 @@
+4 6
+A
+B
+C
+D
+AB4
+AC1
+AD2
+BC8
+BD3
+CD5
+
